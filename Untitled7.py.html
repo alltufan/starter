@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[7]:
+
+
+cost= int(input("please enter cost: "))
+
+
+tax = cost * 0.08
+tip = cost* 0.10
+amount= cost + tip + tax
+
+print("your reciept detail is: ","\ncost = ",cost,"\ntax= ",tax,"\ntip= ",tip,"\ntotal amount= ",tip+tax+cost)
+
+
+# In[42]:
+
+
+year = int(input("plese enter your year: \n"))
+salary = float(input("please enter salary: \n"))
+
+if year <= 0:
+    print("you need to work one year for get the promotion! ")
+elif 0< year <= 1:
+    salary = salary + salary * 0.05
+elif 1< year <= 3:
+    salary = salary + salary * 0.10
+elif 3< year <=5:
+    salary = salary + salary * 0.20
+else:
+    salary = salary + salary * 0.25
+
+print ("your raised salary is ;", salary,"usd" )
+    
+
+
+# In[38]:
+
+
+num = 0
+
+while num < 9:
+    print("value",num)
+    num = num + 2
+    
+
+
+# In[27]:
+
+
+num=int(input("Please enter a number between 1 and 10: \n"))
+
+while num<1 or num>10:
+    print("please enter valid number")
+    num=int(input("Please enter a number between 1 and 10: \n"))
+print("congrats..")
+
+
+# In[ ]:
+
+
+
+
