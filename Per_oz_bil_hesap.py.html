@@ -1,0 +1,83 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+## Giriş Menüsünden Maaş, mesai ve izin günleri hesaplaması yapan program. Programdan çıkış yapmak için 0'a basılmalıdır.
+
+hafta=['pazartesi','salı','çarşamba','perşembe','cuma','cumartesi','pazar']
+
+menu = """Lütfen yapmak istediğiniz işlemi seçin:
+      1. Maaş Hesaplama
+      2. Mesai Ücreti Hesaplama
+      3. İzin Hesaplama
+      4. Çalışma Bitiş Günü Hesaplama
+      0. Çıkış
+       \n
+      """
+    
+while  True:
+    
+    print(menu)
+    giris = int(input("Seçim: \n"))
+
+    if giris == 0:
+        break
+    
+    elif giris == 1:
+        maas=int(input("Lütfen Maaş tutarınızı girin: \n"))
+        gun=int(input("Lütfen Çalıştığınız günü girin: \n"))
+        if gun > 30 and gun-30>0: 
+            gun_uc=maas/30
+            odeme=maas+gun_uc*(gun-30)
+            print("Maaş hakedişiniz {} TL'dir".format(odeme))
+            print("Toplam ödemeniz",maas+odeme,"TL dir")
+    
+        elif gun<30:
+            gun_uc=maas/30
+            odeme=gun_uc*gun
+            print("Maaş hakedişiniz {} TL'dir".format(odeme))
+            print("Toplam ödemeniz",maas+odeme,"TL dir")
+          
+        else:
+            print("Henüz ödeme almayacaksınız")
+
+    elif giris == 2:
+        maas=float(input("Lütfen Maaşınızı yazın: \n"))
+        mesai=float(input("Lüften bu hafta çalştığınız toplam mesai saatini yazın: \n"))
+        sa_ucr=(maas/30)/8
+        odeme=sa_ucr*mesai
+        print("Maaş hakedişiniz {} TL'dir".format(odeme))
+        print("Toplam ödemeniz",maas+odeme,"TL dir")
+    
+    elif giris == 3 : 
+        cal_gun=int(input("lütfen çalıştığınız gün sayısını girin: "))
+        hfta=cal_gun/7
+        iz=hfta*1
+        print("hakkınız olan izin {} gün ".format(int(iz)))
+        
+
+    elif giris == 4:
+        i=input("İş başı yapılacak hafta günü(küçük harfle yazın): \n")
+        g=int(input("Mesai günü(rakamla giriniz): \n"))
+        
+        j=hafta.index(i) #girilen günün listedeki kaçıncı değere geldiğini j değişkenine atadık
+        artıs=g%7 #girilen günü 7 ye bölerek hangi güne denk geleceğini hesapladık.
+        
+        print(" {} gün sonra {} günü çalışmanız bitecektir".format(g,hafta[(j+artıs-1)%7])) 
+        #
+        # index 0 'dan saymaya başladığı için 1 eksiltiyoruz
+
+    else:
+        print("Hoşçakal")
+        
+        
+            
+
+
+# In[ ]:
+
+
+
+
