@@ -1,0 +1,98 @@
+## Giriş Menüsünden Maaş, mesai ve izin günleri hesaplaması yapan program. Programdan çıkış yapmak için 0'a basılmalıdır.
+dosya=open("Personel_islem_yeni.txt","a")
+dosya.write("İŞLEMLER\n")
+hafta=['pazartesi','salı','çarşamba','perşembe','cuma','cumartesi','pazar']
+
+ad=input("Lütfen Adınızı Girin: ")
+ad=ad.capitalize()
+soyad=input("Lütfen Soyadınızı Girin: ")
+soyad=soyad.upper()
+dosya.write("Giriş Yapan: "+ad+" "+soyad+"\n")
+
+menu = """Lütfen yapmak istediğiniz işlemi seçin:
+      1. Maaş Hesaplama
+      2. Mesai Ücreti Hesaplama
+      3. İzin Hesaplama
+      4. Çalışma Bitiş Günü Hesaplama
+      0. Çıkış
+       \n
+      """
+    
+while  True:
+    
+    print(menu)
+    giris = int(input("Seçim: \n"))
+    try:
+        if giris == 0:
+            break
+    
+        elif giris == 1:
+            dosya=open("Personel_islem.txt","a")
+            dosya.write("Maaş Hesaplama")
+            maas=int(input("Lütfen Maaş tutarınızı girin: \n"))
+            gun=int(input("Lütfen Çalıştığınız günü girin: \n"))
+        
+            if gun > 30 and gun-30>0: 
+                gun_uc=maas/30
+                odeme=gun_uc*(gun-30)
+                print("Maaş hakedişiniz {} TL'dir".format(odeme))
+                print("Sn",ad,soyad,"Toplam ödemeniz",odeme,"TL dir \n")
+    
+            elif gun<30:
+                gun_uc=maas/30
+                odeme=gun_uc*gun
+                print("Maaş hakedişiniz {} TL'dir".format(odeme))
+                print("Sn",ad,soyad,"Toplam ödemeniz",odeme,"TL dir \n")
+            elif gun==30:
+                print("Sn",ad,soyad,"Bu ay çalışmanız için {} ödeme alacaksınız \n".format(maas))
+            
+            else:
+                print("Sn",ad,soyad,"Henüz ödeme almayacaksınız \n")
+            dosya.write("=> "+"Maas: "+str(maas)+","+"Gün: "+str(gun)+","+"Ödeme: "+str(odeme)+"\n")
+            dosya.close()
+    
+
+        elif giris == 2:
+            dosya=open("Personel_islem.txt","a")
+            dosya.write("Mesai Ücreti Hesaplama")
+            maas=float(input("Lütfen Maaşınızı yazın: \n"))
+            mesai=float(input("Lüften bu hafta çalştığınız toplam mesai saatini yazın: \n"))
+            sa_ucr=(maas/30)/8
+            odeme=sa_ucr*mesai
+            print("Maaş hakedişiniz {} TL'dir \n".format(odeme))
+            print("Toplam ödemeniz",maas+odeme,"TL dir \n")
+            dosya.write("=> "+"Maas: "+str(maas)+","+"Mesai: "+str(mesai)+","+"Ödeme: "+str(odeme)+"\n")
+            dosya.close()
+    
+        elif giris == 3 :
+            dosya=open("Personel_islem.txt","a")
+            dosya.write("İzin Hesaplama")
+            cal_gun=int(input("lütfen çalıştığınız gün sayısını girin: "))
+            hfta=cal_gun/7
+            iz=hfta*1
+            print("hakkınız olan izin {} gün \n".format(int(iz)))
+            dosya.write("=> "+"Çalışıma günü: "+str(cal_gun)+","+"Hafta: "+str(hfta)+","+"İzin: "+str(iz)+"\n")
+            dosya.close()
+        
+
+        elif giris == 4:
+            dosya=open("Personel_islem.txt","a")
+            dosya.write("Çalışma Bitiş Günün Hesaplama")
+            i=input("İş başı yapılacak hafta günü(küçük harfle yazın): \n")
+            g=int(input("Mesai günü(rakamla giriniz): \n"))
+            j=hafta.index(i) #girilen günün listedeki kaçıncı değere geldiğini j değişkenine atadık
+            artıs=g%7 #girilen günü 7 ye bölerek hangi güne denk geleceğini hesapladık.
+        
+            print(" {} gün sonra {} günü çalışmanız bitecektir \n".format(g,hafta[(j+artıs-1)%7]))
+            dosya.write("=> "+"İş başı gün: "+str(i)+", "+"Mesai Günü: "+str(g)+", "+"Çalışma bitiş günü: "+str(int((j+artıs-1)%7))+"\n")
+            dosya.close()
+           
+        #
+        # index 0 'dan saymaya başladığı için 1 eksiltiyoruz
+
+        else:
+            print("Hoşçakal")
+    
+    except (ValueError,TypeError):
+        print("Hatalı giriş, lütfen istediğiniz işlemi tekar deneyiniz \n")
+        
